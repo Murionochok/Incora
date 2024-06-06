@@ -1,0 +1,29 @@
+.user {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  background-color: #aaaaaa;
+
+  margin: 20px 50px;
+  padding: 10px 0;
+}
+
+.imageBlock {
+  width: 50px;
+
+  img {
+    width: 100%;
+
+    display: block;
+  }
+}
+
+.userData {
+  display: flex;
+  justify-content: space-evenly;
+
+  width: 80%;
+
+  list-style: none;
+}
