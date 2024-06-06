@@ -2,17 +2,17 @@ import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import { User } from "../../interfaces/userInterfaces";
 import axios from "axios";
 
-interface initUser {
+interface initUsers {
   users: User[];
   status: string;
 }
 
-const initialState: initUser = {
+const initialState: initUsers = {
   users: [],
   status: "null",
 };
 
-const fetchUsers = createAsyncThunk("users/fetchUsers", async () => {
+export const fetchUsers = createAsyncThunk("users/fetchUsers", async () => {
   const data = axios.get("https://jsonplaceholder.typicode.com/users");
   return data;
 });

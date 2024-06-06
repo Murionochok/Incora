@@ -4,12 +4,7 @@ import { UserViewData } from "../../interfaces/userInterfaces";
 
 import styles from "./UserView.module.scss";
 
-export default function UserView({
-  name,
-  email,
-  phone,
-  postsAmount,
-}: UserViewData) {
+export default function UserView({ name, email, phone }: UserViewData) {
   return (
     <Box className={styles.user}>
       <Box className={styles.imageBlock}>
@@ -19,7 +14,6 @@ export default function UserView({
         <li>Name: {name}</li>
         <li>Email: {email}</li>
         <li>Phone: {phone}</li>
-        <li>PostsAmount: {postsAmount}</li>
       </ul>
     </Box>
   );

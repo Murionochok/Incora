@@ -1,9 +1,8 @@
 export interface UserViewData {
-  id: string;
+  id: number;
   name: string;
   email: string;
   phone: string;
-  postsAmount: number;
 }
 
 export interface User {
