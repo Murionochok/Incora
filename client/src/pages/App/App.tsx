@@ -8,6 +8,7 @@ import styles from "./App.module.scss";
 import { useEffect } from "react";
 import { useAppDispatch } from "../../redux/hooks";
 import { fetchUsers } from "../../redux/reducers/userReducer";
+import { Outlet } from "react-router-dom";
 
 export default function App() {
   const dispatch = useAppDispatch();
@@ -18,7 +19,7 @@ export default function App() {
   return (
     <Box className={styles.app}>
       <Header />
-      <Users />
+      <Outlet />
       <Footer />
     </Box>
   );
