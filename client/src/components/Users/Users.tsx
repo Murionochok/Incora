@@ -2,7 +2,6 @@ import { Box } from "@mui/material";
 
 import UserView from "../UserView/UserView";
 
-import { User } from "../../interfaces/userInterfaces";
 import { useAppDispatch, useAppSelector } from "../../redux/hooks";
 import { useEffect } from "react";
 import { fetchUsers } from "../../redux/reducers/userReducer";
@@ -16,7 +15,7 @@ export default function Users() {
   }, [dispatch]);
   return (
     <Box>
-      {users.map((user: User) => (
+      {users.map((user) => (
         <UserView
           key={user.id}
           id={user.id}

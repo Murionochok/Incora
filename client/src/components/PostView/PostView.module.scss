@@ -1,0 +1,23 @@
+.post {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  background-color: #aaaaaa;
+
+  margin: 20px 50px;
+  padding: 10px 0;
+}
+
+.postData {
+  display: flex;
+  // justify-content: space-evenly;
+
+  width: 80%;
+
+  list-style: none;
+}
+
+.dataPiece {
+  width: 50%;
+}

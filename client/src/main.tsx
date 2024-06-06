@@ -8,8 +8,6 @@ import UserPosts from "./pages/UserPosts/UserPosts";
 
 import { Provider } from "react-redux";
 import { store } from "./redux/store";
-import Header from "./components/Header/Header";
-import Footer from "./components/Footer/Footer";
 import Users from "./components/Users/Users";
 import App from "./pages/App/App";
 
