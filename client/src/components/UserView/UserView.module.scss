@@ -21,9 +21,13 @@
 
 .userData {
   display: flex;
-  justify-content: space-evenly;
+  // justify-content: space-evenly;
 
   width: 80%;
 
   list-style: none;
+}
+
+.dataPiece {
+  width: 33%;
 }

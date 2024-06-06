@@ -11,9 +11,15 @@ export default function UserView({ name, email, phone }: UserViewData) {
         <img src="/man-user.svg" alt="user-icon" />
       </Box>
       <ul className={styles.userData}>
-        <li>Name: {name}</li>
-        <li>Email: {email}</li>
-        <li>Phone: {phone}</li>
+        <li className={styles.dataPiece}>
+          <Box>Name: {name}</Box>
+        </li>
+        <li className={styles.dataPiece}>
+          <Box>Email: {email}</Box>
+        </li>
+        <li className={styles.dataPiece}>
+          <Box>Phone: {phone}</Box>
+        </li>
       </ul>
     </Box>
   );
