@@ -44,6 +44,16 @@ export const editPost = createAsyncThunk(
   }
 );
 
+export const deletePost = createAsyncThunk(
+  "posts/deletePost",
+  async (id: number) => {
+    const response = await axios.delete(
+      `https://jsonplaceholder.typicode.com/posts/${id}`
+    );
+    return response;
+  }
+);
+
 const postSlice = createSlice({
   name: "posts",
   initialState,
@@ -84,6 +94,18 @@ const postSlice = createSlice({
         });
       })
       .addCase(editPost.rejected, (state) => {
+        state.status = "error";
+      })
+      .addCase(deletePost.pending, (state) => {
+        state.status = "loading";
+      })
+      .addCase(deletePost.fulfilled, (state, action) => {
+        state.status = "success";
+        const id = action.meta.arg;
+
+        state.posts = state.posts.filter((statePost) => statePost.id !== id);
+      })
+      .addCase(deletePost.rejected, (state) => {
         state.status = "error";
       });
   },
