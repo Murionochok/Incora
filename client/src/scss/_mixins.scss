@@ -1,0 +1,22 @@
+@mixin imageBox {
+  width: 50px;
+
+  display: flex;
+
+  margin: 0 10px;
+
+  img {
+    width: 100%;
+  }
+}
+
+@mixin list {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  background-color: #aaaaaa;
+
+  margin: 20px 50px;
+  padding: 10px 0;
+}

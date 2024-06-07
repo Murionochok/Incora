@@ -1,26 +1,16 @@
+@import "../../scss/mixins";
 .comment {
-  display: flex;
-  padding: 20px 40px;
-  margin: 10px 60px;
-
-  background-color: #aaaaaa;
+  @include list;
 }
 
 .imageBox {
-  width: 50px;
-
-  display: flex;
-
-  margin: 0 10px;
-
-  img {
-    width: 100%;
-  }
+  @include imageBox;
 }
 
 .data {
   display: flex;
   flex-direction: column;
+  width: 80%;
 }
 
 .body {

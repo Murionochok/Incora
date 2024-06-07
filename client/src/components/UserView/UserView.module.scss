@@ -1,27 +1,15 @@
+@import "../../scss/mixins";
+
 .user {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-
-  background-color: #aaaaaa;
-
-  margin: 20px 50px;
-  padding: 10px 0;
+  @include list;
 }
 
 .imageBlock {
-  width: 50px;
-
-  img {
-    width: 100%;
-
-    display: block;
-  }
+  @include imageBox;
 }
 
 .userData {
   display: flex;
-  // justify-content: space-evenly;
 
   width: 80%;
 
