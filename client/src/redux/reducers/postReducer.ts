@@ -25,6 +25,7 @@ export const fetchUserPosts = createAsyncThunk(
 export const pushPost = createAsyncThunk(
   "posts/pushPost",
   async (post: Post) => {
+    console.log(post);
     const response = await axios.post(
       "https://jsonplaceholder.typicode.com/posts",
       post
@@ -52,8 +53,9 @@ const postSlice = createSlice({
       .addCase(pushPost.pending, (state) => {
         state.status = "loading";
       })
-      .addCase(pushPost.fulfilled, (state) => {
+      .addCase(pushPost.fulfilled, (state, action) => {
         state.status = "success";
+        state.posts = state.posts.concat(action.payload.data);
       })
       .addCase(pushPost.rejected, (state) => {
         state.status = "error";

@@ -5,11 +5,12 @@ import { useRef } from "react";
 import { useAppDispatch } from "../../redux/hooks";
 import { pushPost } from "../../redux/reducers/postReducer";
 import { useParams } from "react-router-dom";
+import { PopUpHandleClose } from "../../interfaces/postInterfaces";
 
-export default function PopUp({ handleClose }: () => void) {
+export default function PopUp({ handleClose }: PopUpHandleClose) {
   const userId = useParams();
-  const titleRef = useRef(null);
-  const descriptionRef = useRef(null);
+  const titleRef = useRef<HTMLInputElement>(null);
+  const descriptionRef = useRef<HTMLInputElement>(null);
 
   const dispatch = useAppDispatch();
 
@@ -19,9 +20,10 @@ export default function PopUp({ handleClose }: () => void) {
         userId: Number(userId.id || "0"),
         id: Date.now(),
         title: (titleRef.current as unknown as HTMLInputElement).value,
-        body: (titleRef.current as unknown as HTMLInputElement).value,
+        body: (descriptionRef.current as unknown as HTMLInputElement).value,
       })
     );
+    handleClose();
   };
   return (
     <Box className={styles.popUp}>
@@ -31,16 +33,16 @@ export default function PopUp({ handleClose }: () => void) {
         </Box>
         <form className={styles.data}>
           <h1>Create new post</h1>
-          <TextField required label="Title" ref={titleRef} />
+          <TextField required label="Title" inputRef={titleRef} />
           <TextField
             required
             label="Description"
             multiline
             minRows={7}
-            ref={descriptionRef}
+            inputRef={descriptionRef}
           />
           <Box className={styles.submitBtn}>
-            <Button variant="contained" type="submit" onClick={submit}>
+            <Button variant="contained" onClick={submit}>
               Submit
             </Button>
           </Box>
