@@ -25,9 +25,19 @@ export const fetchUserPosts = createAsyncThunk(
 export const pushPost = createAsyncThunk(
   "posts/pushPost",
   async (post: Post) => {
-    console.log(post);
     const response = await axios.post(
       "https://jsonplaceholder.typicode.com/posts",
+      post
+    );
+    return response;
+  }
+);
+
+export const editPost = createAsyncThunk(
+  "posts/editPost",
+  async (post: Post) => {
+    const response = await axios.put(
+      `https://jsonplaceholder.typicode.com/posts/${post.id}`,
       post
     );
     return response;
@@ -58,6 +68,22 @@ const postSlice = createSlice({
         state.posts = state.posts.concat(action.payload.data);
       })
       .addCase(pushPost.rejected, (state) => {
+        state.status = "error";
+      })
+      .addCase(editPost.pending, (state) => {
+        state.status = "loading";
+      })
+      .addCase(editPost.fulfilled, (state, action) => {
+        state.status = "success";
+        const post = action.payload.data;
+        state.posts = state.posts.map((statePost) => {
+          if (statePost.id === post.id) {
+            return { ...post };
+          }
+          return { ...statePost };
+        });
+      })
+      .addCase(editPost.rejected, (state) => {
         state.status = "error";
       });
   },

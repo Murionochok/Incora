@@ -1,28 +1,62 @@
 import { Box, Button, TextField } from "@mui/material";
 
 import styles from "./PopUp.module.scss";
-import { useRef } from "react";
+import { useState } from "react";
 import { useAppDispatch } from "../../redux/hooks";
-import { pushPost } from "../../redux/reducers/postReducer";
+import { editPost, pushPost } from "../../redux/reducers/postReducer";
 import { useParams } from "react-router-dom";
-import { PopUpHandleClose } from "../../interfaces/postInterfaces";
+import { PopUpInterface } from "../../interfaces/postInterfaces";
 
-export default function PopUp({ handleClose }: PopUpHandleClose) {
+export default function PopUp({
+  handleClose,
+  id,
+  title,
+  body,
+}: PopUpInterface) {
   const userId = useParams();
-  const titleRef = useRef<HTMLInputElement>(null);
-  const descriptionRef = useRef<HTMLInputElement>(null);
+  const [titleState, setTitleState] = useState(title);
+  const [descriptionState, setDescriptionState] = useState(body);
+
+  const updateTitleField = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setTitleState(event.target.value);
+    event.preventDefault();
+  };
+
+  const updateDescriptionField = (
+    event: React.ChangeEvent<HTMLInputElement>
+  ) => {
+    setDescriptionState(event.target.value);
+    event.preventDefault();
+  };
+
+  const request = id == 0 ? "Create" : "Edit";
 
   const dispatch = useAppDispatch();
 
   const submit = () => {
-    dispatch(
-      pushPost({
-        userId: Number(userId.id || "0"),
-        id: Date.now(),
-        title: (titleRef.current as unknown as HTMLInputElement).value,
-        body: (descriptionRef.current as unknown as HTMLInputElement).value,
-      })
-    );
+    switch (request) {
+      case "Edit":
+        console.log("edit");
+        dispatch(
+          editPost({
+            userId: Number(userId.id || "0"),
+            id: id,
+            title: titleState,
+            body: descriptionState,
+          })
+        );
+        break;
+      case "Create":
+        dispatch(
+          pushPost({
+            userId: Number(userId.id || "0"),
+            id: Date.now(),
+            title: titleState,
+            body: descriptionState,
+          })
+        );
+        break;
+    }
     handleClose();
   };
   return (
@@ -32,14 +66,20 @@ export default function PopUp({ handleClose }: PopUpHandleClose) {
           <Button onClick={handleClose}>X</Button>
         </Box>
         <form className={styles.data}>
-          <h1>Create new post</h1>
-          <TextField required label="Title" inputRef={titleRef} />
+          <h1>{request} post</h1>
+          <TextField
+            required
+            label="Title"
+            value={titleState}
+            onChange={updateTitleField}
+          />
           <TextField
             required
             label="Description"
             multiline
             minRows={7}
-            inputRef={descriptionRef}
+            value={descriptionState}
+            onChange={updateDescriptionField}
           />
           <Box className={styles.submitBtn}>
             <Button variant="contained" onClick={submit}>

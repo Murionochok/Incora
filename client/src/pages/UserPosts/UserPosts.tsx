@@ -37,7 +37,7 @@ export default function UserPosts() {
           />
         ))}
       </Box>
-      {open && <PopUp handleClose={toggleOpen} />}
+      {open && <PopUp handleClose={toggleOpen} id={0} title={""} body={""} />}
     </>
   );
 }

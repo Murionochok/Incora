@@ -5,6 +5,9 @@ export interface Post {
   body: string;
 }
 
-export interface PopUpHandleClose {
+export interface PopUpInterface {
+  id: number;
+  title: string;
+  body: string;
   handleClose: () => void;
 }
