@@ -1,0 +1,53 @@
+.header {
+  display: flex;
+  background-color: #aaaaaa;
+  padding: 20px 40px;
+  margin: 10px 60px;
+}
+
+.imageBox {
+  width: 50px;
+
+  display: flex;
+
+  margin: 0 10px;
+
+  img {
+    width: 100%;
+  }
+}
+
+.user {
+  display: flex;
+}
+
+.userData {
+  h1,
+  h3 {
+    font-size: medium;
+  }
+
+  font-weight: 400;
+}
+
+.title {
+  text-align: center;
+}
+
+.body {
+  width: 100%;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  p {
+    width: 40%;
+  }
+}
+
+.commentTitle {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

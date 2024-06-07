@@ -10,6 +10,7 @@ import { Provider } from "react-redux";
 import { store } from "./redux/store";
 import Users from "./components/Users/Users";
 import App from "./pages/App/App";
+import Post from "./pages/Post/Post";
 
 const route = createBrowserRouter([
   {
@@ -23,6 +24,10 @@ const route = createBrowserRouter([
       {
         path: "/:id/posts",
         element: <UserPosts />,
+      },
+      {
+        path: "/:uid/posts/:pid",
+        element: <Post />,
       },
     ],
   },

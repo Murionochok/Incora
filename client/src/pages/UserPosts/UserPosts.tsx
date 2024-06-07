@@ -30,6 +30,7 @@ export default function UserPosts() {
         </Box>
         {userPosts.map((post) => (
           <PostView
+            key={post.id}
             userId={post.userId}
             id={post.id}
             title={post.title}

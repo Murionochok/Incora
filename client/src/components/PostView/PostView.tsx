@@ -9,10 +9,11 @@ import { useState } from "react";
 import PopUp from "../PopUp/PopUp";
 import { useAppDispatch } from "../../redux/hooks";
 import { deletePost } from "../../redux/reducers/postReducer";
+import { useNavigate } from "react-router-dom";
 
-export default function PostView({ id, title, body }: Post) {
+export default function PostView({ userId, id, title, body }: Post) {
   const [openEdit, setOpenEdit] = useState(false);
-
+  const navigate = useNavigate();
   const dispatch = useAppDispatch();
 
   const toggleOpenEdit = () => {
@@ -21,6 +22,10 @@ export default function PostView({ id, title, body }: Post) {
 
   const deleteThisPost = () => {
     dispatch(deletePost(id));
+  };
+
+  const openPostDetails = () => {
+    navigate(`/${userId}/posts/${id}`);
   };
 
   return (
@@ -41,7 +46,9 @@ export default function PostView({ id, title, body }: Post) {
               <Button onClick={toggleOpenEdit}>
                 <EditIcon />
               </Button>
-              <Button variant="contained">Details</Button>
+              <Button variant="contained" onClick={openPostDetails}>
+                Details
+              </Button>
             </Box>
           </li>
         </ul>
